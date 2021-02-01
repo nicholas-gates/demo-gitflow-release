@@ -1,0 +1,7 @@
+{
+  "name": "github-action-gitflow-release-workflow",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Thomas Eizinger <thomas@eizinger.io>",
+  "license": "MIT"
+}
