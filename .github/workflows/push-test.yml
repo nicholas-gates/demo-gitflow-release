@@ -11,8 +11,10 @@ jobs:
       - name: Log info related to the workflow
         run: echo  "CREATE_RELEASE = ${{secrets.CREATE_RELEASE}}"
       - name: CREATE_RELEASE is false
-        if: ${{secrets.PNR_CREATE_RELEASE}} == false
+        env: # Or as an environment variable
+          create_release: ${{ secrets.PNR_CREATE_RELEASE }}
+        if: ${{env.create_release == 'false'}}
         run: echo  "CREATE_RELEASE = false"
-      - name: CREATE_RELEASE is true
-        if: ${{secrets.PNR_CREATE_RELEASE}} == true
-        run: echo  "CREATE_RELEASE = true"     
+      # - name: CREATE_RELEASE is true
+      #   if: ${{secrets.PNR_CREATE_RELEASE}} == true
+      #   run: echo  "CREATE_RELEASE = true"     
