@@ -18,8 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true # only merged pull requests must trigger this job
     steps:
-      - name: Log info related to the workflow
-        run: echo  "CREATE_RELEASE = ${{secrets.CREATE_RELEASE}}"
+      # - name: Log info related to the workflow
+      #   run: echo  "CREATE_RELEASE = ${{secrets.CREATE_RELEASE}}"
       - name: Extract version from branch name (for release branches)
         if: startsWith(github.event.pull_request.head.ref, 'release/')
         run: |
@@ -37,7 +37,7 @@ jobs:
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Create Release
-        if: secrets.PNR_CREATE_RELEASE == true
+        # if: ${{secrets.PNR_CREATE_RELEASE}} == true
         uses: thomaseizinger/create-release@1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,11 +54,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           head: master
-          base: dev
-          title: Merge master into dev branch
+          base: develop
+          title: Merge master into develop branch
           body: |
-            This PR merges the master branch back into dev.
-            This happens to ensure that the updates that happend on the release branch, i.e. CHANGELOG and manifest updates are also present on the dev branch.
+            This PR merges the master branch back into develop.
+            This happens to ensure that the updates that happend on the release branch, i.e. CHANGELOG and manifest updates are also present on the develop branch.
 
       # if needed, you can checkout the latest master here, build artifacts and publish / deploy them somewhere
       # the create-release action has an output `upload_url` output that you can use to upload assets

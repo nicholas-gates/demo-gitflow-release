@@ -1,0 +1,22 @@
+name: Push tests
+
+on:
+  push
+
+jobs:
+  draft-new-release:
+    name: "Draft a new release"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log info related to the workflow
+        env: # Or as an environment variable
+          create_release: ${{ secrets.CREATE_RELEASE }}
+        run: echo  "CREATE_RELEASE = ${{env.create_release}}"
+      - name: CREATE_RELEASE is false
+        env: # Or as an environment variable
+          create_release: ${{ secrets.PNR_CREATE_RELEASE }}
+        if: ${{env.create_release == 'false'}}
+        run: echo  "CREATE_RELEASE = false"
+      # - name: CREATE_RELEASE is true
+      #   if: ${{secrets.PNR_CREATE_RELEASE}} == true
+      #   run: echo  "CREATE_RELEASE = true"     
