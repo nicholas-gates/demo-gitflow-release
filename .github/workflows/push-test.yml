@@ -10,5 +10,9 @@ jobs:
     steps:
       - name: Log info related to the workflow
         run: echo  "CREATE_RELEASE = ${{secrets.CREATE_RELEASE}}"
-    
-    
+      - name: CREATE_RELEASE is false
+        if: ${{secrets.PNR_CREATE_RELEASE}} == false
+        run: echo  "CREATE_RELEASE = false"
+      - name: CREATE_RELEASE is true
+        if: ${{secrets.PNR_CREATE_RELEASE}} == true
+        run: echo  "CREATE_RELEASE = true"     
