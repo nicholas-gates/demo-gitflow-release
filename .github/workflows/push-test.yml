@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Log info related to the workflow
-        run: echo  "CREATE_RELEASE = ${{secrets.CREATE_RELEASE}}"
+        env: # Or as an environment variable
+          create_release: ${{ secrets.CREATE_RELEASE }}
+        run: echo  "CREATE_RELEASE = ${{env.create_release}}"
       - name: CREATE_RELEASE is false
         env: # Or as an environment variable
           create_release: ${{ secrets.PNR_CREATE_RELEASE }}
