@@ -1,0 +1,14 @@
+name: Push tests
+
+on:
+  push
+
+jobs:
+  draft-new-release:
+    name: "Draft a new release"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log info related to the workflow
+        run: echo  "CREATE_RELEASE = ${{secrets.CREATE_RELEASE}}"
+    
+    
