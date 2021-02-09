@@ -8,11 +8,18 @@ on:
       - closed
 
 jobs:
+  # runtime_log:
+  #   name: Log info related to the workflow
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: echo  "PNR_RUN_PUBLISH = ${{secrets.PNR_RUN_PUBLISH}}"
   release:
     name: Publish new release
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true # only merged pull requests must trigger this job
     steps:
+      - name: Log info related to the workflow
+        run: echo  "CREATE_RELEASE = ${{secrets.CREATE_RELEASE}}"
       - name: Extract version from branch name (for release branches)
         if: startsWith(github.event.pull_request.head.ref, 'release/')
         run: |
@@ -30,6 +37,7 @@ jobs:
           echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Create Release
+        if: secrets.PNR_CREATE_RELEASE == true
         uses: thomaseizinger/create-release@1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
