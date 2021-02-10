@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5] - 2021-02-10
+
 ## [0.1.4] - 2021-02-09
 
 ## [0.1.3] - 2021-02-09
@@ -15,7 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.1] - 2021-02-01
 
-[Unreleased]: https://github.com/nicholas-gates/demo-gitflow-release/compare/0.1.4...HEAD
+[Unreleased]: https://github.com/nicholas-gates/demo-gitflow-release/compare/0.1.5...HEAD
+
+[0.1.5]: https://github.com/nicholas-gates/demo-gitflow-release/compare/0.1.4...0.1.5
 
 [0.1.4]: https://github.com/nicholas-gates/demo-gitflow-release/compare/0.1.3...0.1.4
 
