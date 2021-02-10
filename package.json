@@ -33,14 +33,13 @@
       ],
       "warnOnFail": false,
       "maxSubjectLength": 100,
-      "subjectPattern": "^([A-Z]{4}-[0-9]+\\s)*[a-z0-9\\s]+$",
+      "subjectPattern": "[A-Z]{4}-[0-9]{4} [a-z0-9\\ ]+$",
       "subjectPatternErrorMsg": "🛑 🛑 🛑 Subject must be in format 'QPPP-1234 some commit message in lower case'",
       "helpMessage": ""
     }
   },
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
       "commit-msg": "validate-commit-msg"
     }
   },
