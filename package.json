@@ -8,20 +8,24 @@
     "cm": "cz"
   },
   "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
     "@digitalroute/cz-conventional-changelog-for-jira": "^6.2.0",
     "commitizen": "^4.2.3",
-    "cz-conventional-changelog": "^3.3.0",
     "husky": "^4.3.8"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/@digitalroute/cz-conventional-changelog-for-jira",
-      "minHeaderWidth": 12
+      "minHeaderWidth": 12,
+      "rules": {"config-conventional/subject-case": ["sentence-case", "start-case", "pascal-case", "upper-case"]}
     }
   },
   "husky": {
     "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  }
+  },
+  "dependencies": {}
 }
