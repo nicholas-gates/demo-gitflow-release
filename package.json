@@ -1,6 +1,6 @@
 {
   "name": "github-action-gitflow-release-workflow",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "index.js",
   "author": "Thomas Eizinger <thomas@eizinger.io>",
   "license": "MIT",
@@ -8,12 +8,40 @@
     "cm": "cz"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^4.3.8"
+    "@digitalroute/cz-conventional-changelog-for-jira": "^6.2.0",
+    "commitizen": "^4.2.3",
+    "husky": "^4.3.8",
+    "validate-commit-msg": "^2.14.0"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "./node_modules/@digitalroute/cz-conventional-changelog-for-jira",
+      "minHeaderWidth": 12,
+      "jiraPrefix": "QPPP"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100,
+      "subjectPattern": "[A-Z]{4}-[0-9]{4} [a-z0-9\\ ]+$",
+      "subjectPatternErrorMsg": "🛑 🛑 🛑 Subject must be in format 'QPPP-1234 some commit message in lower case'",
+      "helpMessage": ""
     }
-  }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "validate-commit-msg"
+    }
+  },
+  "dependencies": {}
 }
