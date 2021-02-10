@@ -14,19 +14,39 @@
     "commitizen": "^4.2.3",
     "commitlint-config-jira": "^1.4.1",
     "commitlint-plugin-jira-rules": "^1.4.0",
-    "husky": "^4.3.8"
+    "husky": "^4.3.8",
+    "validate-commit-msg": "^2.14.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/@digitalroute/cz-conventional-changelog-for-jira",
       "minHeaderWidth": 12,
       "jiraPrefix": "QPPP"
+    },
+    "validate-commit-msg": {
+      "types": [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "chore",
+        "revert"
+      ],
+      "warnOnFail": false,
+      "maxSubjectLength": 100,
+      "subjectPattern": "^([A-Z]{4}-[0-9]+\\s)*[a-z0-9\\s]+$",
+      "subjectPatternErrorMsg": "‼️ 🛑 🛑 🛑 Subject must be in format 'QPPP-1234 commit message in lower case'",
+      "helpMessage": ""
     }
   },
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      "commit-msg": "validate-commit-msg"
+
     }
   },
   "dependencies": {}
